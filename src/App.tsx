@@ -1,25 +1,38 @@
 import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import styled, {
+  createGlobalStyle,
+  ThemeProvider as ThP,
+} from 'styled-components';
+import { dark } from './Theme/Theme';
+
+const GlobalStyle = createGlobalStyle`
+  body {
+    margin: 0;
+    padding: 0;
+    font-family: ${dark.textFont};
+    color:${dark.color};
+    background-color: ${dark.mainDarkColor};
+  };
+  a {
+    text-decoration: none;
+  }
+`;
+const Container = styled.div`
+  margin: 0;
+  padding: 0;
+  @media (max-width: 850px) {
+    box-shadow: none;
+    padding: 1rem;
+    margin: 0;
+  }
+`;
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <ThP theme={dark}>
+      <GlobalStyle />
+      <Container></Container>
+    </ThP>
   );
 }
 
